@@ -1,16 +1,13 @@
-# SYNOPSIS
-#   nvm [options]
-#
-# USAGE
-#   Options
-#
-
 function nvm -d "Node version manager"
   if test -e $NVM_DIR/nvm.sh
-    available fenv;
-      and fenv source $NVM_DIR/nvm.sh\; nvm $argv
-      or echo "You need to install foreign-env plugin"
+    if not available fenv
+      echo "You need to install foreign-env plugin"
+      return 1
+    end
+
+    fenv source $NVM_DIR/nvm.sh\; nvm $argv
   else
     echo "You need to install nvm"
+    return 1
   end
 end
