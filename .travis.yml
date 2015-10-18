@@ -1,0 +1,42 @@
+language: generic
+
+sudo: false
+
+env:
+  global:
+    - FISH_RELEASE="http://fishshell.com/files/2.2.0/fish-2.2.0.tar.gz"
+    - OMF_INSTALLER="https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install"
+    - NVM_INSTALLER="https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh"
+
+install:
+  - ls -l $HOME/{fish,.config,.local,.nvm}
+  - bash -c "[ -d $HOME/fish/bin ]
+    || (wget $FISH_RELEASE
+    && tar -xzf $(basename $FISH_RELEASE)
+    && rm $(basename $FISH_RELEASE)
+    && cd $(basename ${FISH_RELEASE%.tar.gz})
+    && ./configure --prefix=$HOME/fish
+    && make
+    && make install)"
+  - export PATH=$HOME/fish/bin:$PATH
+  - bash -c "[ -e $HOME/.local/share/omf/init.fish ]
+    || (rm -rf ~/.{local/share,config}/omf
+    && wget -O omf-install $OMF_INSTALLER
+    && fish omf-install
+    && fish -c 'omf install foreign-env'
+    && mkdir -p $HOME/.local/share/omf/pkg/nvm
+    && cp -R * $HOME/.local/share/omf/pkg/nvm)"
+  - bash -c "[ -d $HOME/.nvm ]
+    || (rm -rf ~/.nvm
+    && wget -O nvm-install $NVM_INSTALLER
+    && bash nvm-install)"
+
+cache:
+  directories:
+    - $HOME/fish
+    - $HOME/.nvm
+    - $HOME/.config
+    - $HOME/.local
+
+script:
+  - fish test/bootstrap.fish
