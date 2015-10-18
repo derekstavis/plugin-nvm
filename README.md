@@ -25,7 +25,7 @@ $ nvm --help
 If you have a custom `$NVM_DIR`, please add the following line to your `~/.config/fish/config.fish`, replacing the path accordingly:
 
 ```fish
-set -gx NVM_PATH /path/to/nvm
+set -gx NVM_DIR /path/to/nvm
 ```
 
 Refresh your shell and you are good to go!
