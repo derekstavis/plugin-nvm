@@ -1,4 +1,4 @@
-<img src="https://cloud.githubusercontent.com/assets/8317250/8510172/f006f0a4-230f-11e5-98b6-5c2e3c87088f.png" align="left" width="144px" height="144px"/>
+<img src="https://dl.dropboxusercontent.com/u/56336/omf/omf-logo-optimised.svg" align="left" width="144px" height="144px"/>
 
 #### plugin-nvm
 > A nvm wrapper for [Oh My Fish][omf-link].
