@@ -3,12 +3,11 @@ function init -a path --on-event init_nvm
 
   if available fenv
     set -q NVM_DIR; or set -gx NVM_DIR ~/.nvm
+    set -g nvm_prefix $NVM_DIR
 
-    if available brew; and brew ls --version nvm > /dev/null ^&1
-      set -g nvm_prefix (brew --prefix nvm)
-    else
-      set -g nvm_prefix $NVM_DIR
-    end
+    available brew;
+      and test -e (brew --prefix)/Cellar/nvm;
+        and set -g nvm_prefix (brew --prefix nvm)
 
     fenv source $nvm_prefix/nvm.sh >/dev/null ^&1
   end
