@@ -17,7 +17,7 @@ function it_should
     and printf '\n  - It should %s: %s' $duty $progress
     or printf "$progress"
 
-  if eval "$commands" >/dev/null 2>/dev/null
+  if set output (eval "$commands" ^&1)
     set_color green
     printf '\b\b\b\bPASS'
     set_color normal
@@ -25,6 +25,12 @@ function it_should
   else
     set_color red
     printf '\b\b\b\bFAIL'
+    set_color -u
+    printf '\n\nError description\n'
+    set_color normal
+    set_color yellow
+    printf '%s\n' $output >&2
+    echo
     set_color normal
     return 1
   end
