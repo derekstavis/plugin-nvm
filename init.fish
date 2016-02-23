@@ -1,11 +1,9 @@
 function init -a path --on-event init_nvm
-  require foreign-env
-
-  if available fenv
+  if type -q fenv
     set -q NVM_DIR; or set -gx NVM_DIR ~/.nvm
     set -g nvm_prefix $NVM_DIR
 
-    available brew;
+    type -q brew;
       and test -e (brew --prefix)/Cellar/nvm;
         and set -g nvm_prefix (brew --prefix nvm)
 

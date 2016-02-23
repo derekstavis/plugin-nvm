@@ -1,6 +1,6 @@
 function nvm -d "Node version manager"
   if test -e $nvm_prefix/nvm.sh
-    if not available fenv
+    if not type -q fenv
       echo "You need to install foreign-env plugin"
       return 1
     end
