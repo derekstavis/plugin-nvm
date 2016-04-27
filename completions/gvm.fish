@@ -19,9 +19,9 @@ end
 
 complete -c gvm -f -d "Go Version Manager"
 
-complete -c gvm -f -n "__fish_seen_subcommand_from install"            -a "(__gvm_complete_ls_remote)"
-complete -c gvm -f -n "__fish_seen_subcommand_from uninstall"          -a "(__gvm_complete_ls)"
-complete -c gvm -f -n "__fish_seen_subcommand_from use"                -a "(__gvm_complete_ls)"
+complete -c gvm -f -n "__fish_seen_subcommand_from install"            -a "(__gvm_complete_listall)"
+complete -c gvm -f -n "__fish_seen_subcommand_from uninstall"          -a "(__gvm_complete_list)"
+complete -c gvm -f -n "__fish_seen_subcommand_from use"                -a "(__gvm_complete_list)"
 
 complete -c gvm -f -n "__fish_use_subcommand" -a help               -d "Show help message"
 complete -c gvm -f -n "__fish_use_subcommand" -a install            -d "Download and install a <version>"
