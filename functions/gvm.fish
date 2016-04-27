@@ -1,5 +1,5 @@
 function gvm -d "Node version manager"
-  if test -e $gvm_prefix/scripts/gvm.sh
+  if test -e $gvm_prefix/scripts/gvm
     if not type -q fenv
       echo "You need to install foreign-env plugin"
       return 1
