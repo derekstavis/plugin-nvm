@@ -37,10 +37,10 @@ refresh
 
 # License
 
-[MIT][mit] © [Achmad Mahardi][author] et [al][contributors]
 
+[MIT][mit] © [Derek Stavis][author], ported to `gvm` by [Achmad Mahardi][maman]
 
 [mit]:            http://opensource.org/licenses/MIT
-[author]:         http://github.com/maman
+[author]:         http://github.com/derekstavis
+[maman]:          http://github.com/maman
 [omf-link]:       https://www.github.com/oh-my-fish/oh-my-fish
-[contributors]:   https://github.com/maman/plugin-gvm/graphs/contributors
