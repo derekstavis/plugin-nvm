@@ -7,7 +7,7 @@ function nvm -d "Node version manager"
 
     fenv source $nvm_prefix/nvm.sh\; nvm $argv
   else
-    echo "You need to install nvm"
+    echo "You need to install nvm itself (see https://github.com/creationix/nvm#installation)"
     return 1
   end
 end

@@ -15,6 +15,7 @@
 ```fish
 $ omf install nvm
 ```
+**NB** You have to install **nvm** itself separately (the [curl method](https://github.com/creationix/nvm/blob/master/README.markdown#install-script) works fine under Fish too).
 
 
 ## Usage
