@@ -1,5 +1,3 @@
-<img src="https://dl.dropboxusercontent.com/u/56336/omf/omf-logo-optimised.svg" align="left" width="144px" height="144px"/>
-
 #### plugin-nvm
 > A nvm wrapper for [Oh My Fish][omf-link].
 
