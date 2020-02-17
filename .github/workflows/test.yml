@@ -1,0 +1,58 @@
+name: "E2E Test"
+
+on: [pull_request]
+
+jobs:
+  test:
+    name: ${{ matrix.os }}, Fish ${{ matrix.fish }}, NVM ${{ matrix.nvm }}
+    runs-on: ${{ matrix.os }}
+    env:
+      FISH_RELEASE: "3.1.0"
+      OMF_INSTALLER: "https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install"
+      NVM_INSTALLER: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh"
+
+    strategy:
+      matrix:
+        fish: [homebrew, source]
+        nvm: [homebrew, official]
+        os: [ubuntu-latest, macOS-latest]
+        exclude:
+          - fish: homebrew
+            nvm: homebrew
+            os: ubuntu-latest
+
+          - fish: source
+            nvm: homebrew
+            os: ubuntu-latest
+
+          - fish: homebrew
+            nvm: official
+            os: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Install system dependecies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext libncurses5-dev libncursesw5-dev
+
+      - name: Cache compiled Fish
+        uses: actions/cache@v1
+        if: matrix.fish == 'source'
+        with:
+          path: ~/fish-${{ env.FISH_RELEASE }}
+          key: cache-${{ runner.os }}-fish-${{ env.FISH_RELEASE }}-nvm-${{ matrix.nvm }}-${{ hashFiles('.fish-install-source.sh') }}
+
+      - name: Setup environment
+        run: |
+          ./.fish-install-${{ matrix.fish }}.sh
+          ./.nvm-install-${{ matrix.nvm }}.sh
+          ./.omf-install.sh
+          ./.plugin-install.sh
+
+      - name: Run tests
+        run: |
+          fish test/bootstrap.fish

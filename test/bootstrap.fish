@@ -14,10 +14,10 @@ function it_should
   set -l progress (set_color yellow)TEST(set_color normal)
 
   set -q duty;
-    and printf '\n  - It should %s: %s' $duty $progress
-    or printf "$progress"
+    and printf -- '\n  - It should %s: %s' $duty $progress
+    or printf -- "$progress"
 
-  if set output (eval "$commands" ^&1)
+  if set output (eval "$commands" 2>&1)
     set_color green
     printf '\b\b\b\bPASS'
     set_color normal
@@ -29,7 +29,7 @@ function it_should
     printf '\n\nError description\n'
     set_color normal
     set_color yellow
-    printf '%s\n' $output >&2
+    printf -- '%s\n' $output >&2
     echo
     set_color normal
     return 1
@@ -39,7 +39,7 @@ end
 printf 'Running test suite...\n'
 
 for test in test/cases/*
-  printf '- It should %s: ' (basename $test | sed 's/^[0-9]*_//;s/_/ /g;s/\.fish//g')
+  printf -- '- It should %s: ' (basename $test | sed 's/^[0-9]*_//;s/_/ /g;s/\.fish//g')
   source $test;
     or exit 1
   echo
