@@ -7,3 +7,4 @@ if test -e $PACKAGE; then
 fi
 
 ln -s $PWD $PACKAGE
+fish -c "omf install foreign-env"
