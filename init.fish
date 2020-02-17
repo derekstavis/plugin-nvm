@@ -7,7 +7,7 @@ function init -a path --on-event init_nvm
       and test -e (brew --prefix)/Cellar/nvm;
         and set -g nvm_prefix (brew --prefix nvm)
 
-    fenv source $nvm_prefix/nvm.sh >/dev/null ^&1
+    fenv source $nvm_prefix/nvm.sh >/dev/null 2>&1
   end
 
 end

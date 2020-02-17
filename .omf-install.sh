@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# Don't touch if cached
-if test ! -e $HOME/.local/share/omf/init.fish; then
-  wget -O - $OMF_INSTALLER | fish
-  fish -c 'omf install foreign-env'
-else
-  echo Using cached Oh My Fish install
-fi
+echo "Downloading latest installer..."
+wget -O - $OMF_INSTALLER > /tmp/install.fish
+echo "Installing Oh My Fish..."
+fish /tmp/install.fish --channel=dev
+echo "Installing dependencies..."
+fish -c "omf install"
