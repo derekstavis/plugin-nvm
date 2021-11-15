@@ -36,6 +36,15 @@ Refresh your shell and you are good to go!
 refresh
 ```
 
+If you have installed nvm using a package manager you need to specify where is been installed, add the following line to  your `~/.config/fish/config.fish`
+
+```fish
+set -g nvm_prefix /path/to/nvm
+```
+In this case, you don't need to set the `NVM_DIR` where the node versions will be installed, by default will be `~/.nvm`, but you can customize it if you want.
+
+**Note** [Brew](https://brew.sh/) users don't have set up it, the plugin auto-detects it and set up the variable accordingly.
+
 # License
 
 [MIT][mit] © [Derek Willian Stavis][author] et [al][contributors]
