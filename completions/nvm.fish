@@ -3,7 +3,7 @@ set commands help install uninstall use run current ls ls-remote version \
 
 function __nvm_complete_ls_remote
   if not test "$__nvm_ls_remote"
-    set -g __nvm_ls_remote (fenv source ~/.nvm/nvm.sh\; nvm_ls_remote\; nvm_ls_remote_iojs)
+    set -g __nvm_ls_remote (fenv source $nvm_prefix/nvm.sh\; nvm_ls_remote\; nvm_ls_remote_iojs)
   end
 
   printf "%s\n" $__nvm_ls_remote
@@ -11,7 +11,7 @@ end
 
 function __nvm_complete_ls
   if not test "$__nvm_ls"
-    set -g __nvm_ls (fenv source ~/.nvm/nvm.sh\; nvm_ls)
+    set -g __nvm_ls (fenv source $nvm_prefix/nvm.sh\; nvm_ls)
   end
 
   printf "%s\n" $__nvm_ls
